@@ -16,7 +16,7 @@ class NeuralNetwork():
 	"""
 	We need to give our neural network an input data 'x' and the expected value for it 'y'
 	"""
-	def __init__(self,x,y):
+	def __init__(self,x,y,copied=False):
 
 
 		self.input = x
@@ -24,21 +24,24 @@ class NeuralNetwork():
 		self.output = np.zeros(y.shape) # The output is initialized with 0's for future updates
 		self.count = 0 # This counter will help us to check in which training episode we are
 
-		"""
-		We can initialize all the layer weights randomly but in purpose to learn a bit more
-		about nn's i've implemented a way to start each neuron weight with some wanted value
-		"""
-		# self.weights1 = np.random.rand(self.input.shape[1],self.y.shape[0])
-		# self.weights2 = np.random.rand(self.y.shape[0],1)
-		
-		self.weights1 = np.zeros((self.input.shape[1],self.input.shape[0]))
-		for i in range(self.weights1.shape[0]):
-			for j in range(self.weights1.shape[1]):
-				self.weights1[i][j] = 1 # random.random(); if u want it to be random [0,1]
-		self.weights2 = np.zeros((self.y.shape[0],1))
-		for i in range(self.weights2.shape[0]):
-			for j in range(self.weights2.shape[1]):
-				self.weights2[i][j] = random.random() #i # random.random(); if u want it to be random [0,1]
+		if copied:
+			"""
+			We can initialize all the layer weights randomly but in purpose to learn a bit more
+			about nn's i've implemented a way to start each neuron weight with some wanted value
+			"""
+			self.weights1 = np.random.rand(self.input.shape[1],self.y.shape[0])
+			self.weights2 = np.random.rand(self.y.shape[0],1)
+
+		else:
+			print "Tem here"
+			self.weights1 = np.zeros((self.input.shape[1],self.input.shape[0]))
+			for i in range(self.weights1.shape[0]):
+				for j in range(self.weights1.shape[1]):
+					self.weights1[i][j] = 2-i # random.random(); if u want it to be random [0,1]
+			self.weights2 = np.zeros((self.y.shape[0],1))
+			for i in range(self.weights2.shape[0]):
+				for j in range(self.weights2.shape[1]):
+					self.weights2[i][j] = i # random.random(); if u want it to be random [0,1]
 
 		# If u want to check the initialized weights, just print them
 		
@@ -91,5 +94,5 @@ class NeuralNetwork():
 	def predict(self,input):
 		self.layer_1 = sigmoid(np.dot(input,self.weights1))
 		self.output = sigmoid(np.dot(self.layer_1, self.weights2))
-		print "After",self.count,"testing rounds, the prediction is:"
+		print "After",self.count,"testing rounds, the prediction for 4Input nn is:"
 		print self.output
