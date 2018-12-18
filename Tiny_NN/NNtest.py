@@ -71,7 +71,7 @@ print ""
 NN4.predict(X4)
 print ""
 
-for i in range(10000):
+for i in range(20000):
 	NN.feedforward()
 	NN.backprop()
 	NN4.feedforward()
@@ -81,3 +81,11 @@ NN.predict(X)
 print ""
 NN4.predict(X4)
 print ""
+
+print "Prediction for input [0,1,0] in both nn's:"
+NN.predict(np.array([0,1,0]))
+NN4.predict(np.array([0,1,0]))
+
+print "Prediction for input [0,1,1] in both nn's:"
+NN.predict(np.array([0,1,1]))
+NN4.predict(np.array([0,1,1]))

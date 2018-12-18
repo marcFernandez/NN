@@ -33,7 +33,6 @@ class NeuralNetwork():
 			self.weights2 = np.random.rand(self.y.shape[0],1)
 
 		else:
-			print "Tem here"
 			self.weights1 = np.zeros((self.input.shape[1],self.input.shape[0]))
 			for i in range(self.weights1.shape[0]):
 				for j in range(self.weights1.shape[1]):
