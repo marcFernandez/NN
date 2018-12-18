@@ -16,7 +16,7 @@ class NeuralNetwork():
 	"""
 	We need to give our neural network an input data 'x' and the expected value for it 'y'
 	"""
-	def __init__(self,x,y,copied=False):
+	def __init__(self,x,y,random=False):
 
 
 		self.input = x
@@ -24,7 +24,7 @@ class NeuralNetwork():
 		self.output = np.zeros(y.shape) # The output is initialized with 0's for future updates
 		self.count = 0 # This counter will help us to check in which training episode we are
 
-		if copied:
+		if random:
 			"""
 			We can initialize all the layer weights randomly but in purpose to learn a bit more
 			about nn's i've implemented a way to start each neuron weight with some wanted value
